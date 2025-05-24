@@ -71,3 +71,40 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Instrucciones para ejecutar el proyecto Backend
+
+### Requisitos previos
+- Tener instalado [Node.js](https://nodejs.org/) (versión recomendada >=16).
+- Tener instalado npm (viene con Node.js).
+- Tener instalado y corriendo PostgreSQL (o la base de datos que uses).
+- (Opcional) Tener Docker si prefieres usar contenedores.
+
+### Pasos para correr el backend
+
+1. **Clonar el repositorio**
+```bash
+git clone <URL-del-repositorio-backend>
+cd <nombre-del-proyecto-backend>
+```
+2. 🚀 Comando para levantar la base de datos
+```bash
+docker-compose up -d
+```
+
+3. 📄 Variables de entorno requeridas (.env)
+``` env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=myuser
+DB_PASS=mypassword
+DB_NAME=mydatabase
+JWT_SECRET=example
+PORT=3000
+ORIGIN=http://localhost:5173
+```
+4. 🧼 Parar y limpiar
+```bash
+docker-compose down         # Detiene los servicios
+docker-compose down -v      # También elimina los volúmenes (base de datos persistente)
+```
