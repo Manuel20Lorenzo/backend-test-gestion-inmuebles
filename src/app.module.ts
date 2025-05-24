@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { JwtModule } from '@nestjs/jwt';
+import { InmuebleModule } from './inmueble/inmueble.module';
 
 @Module({
 
@@ -25,6 +26,7 @@ import { JwtModule } from '@nestjs/jwt';
       synchronize: true,        // Sincroniza tablas (en dev)
       models: [],               // Aquí puedes añadir tus modelos
     }),
+    InmuebleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

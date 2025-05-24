@@ -14,13 +14,6 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Post('login')
-  @HttpCode(HttpStatus.OK)
-  login(@Body() loginUserDto: LoginUserDto){
-    console.log('loginUserDto:', loginUserDto)
-    return this.usersService.login(loginUserDto)
-  }
-
   @Get('validate')
   @HttpCode(HttpStatus.ACCEPTED)
   validate (@Req() req) {
@@ -43,6 +36,7 @@ export class UsersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
+    console.log('remove user:', id)
     return this.usersService.remove(+id);
   }
 }

@@ -4,19 +4,17 @@ import { UsersController } from './users.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './model/user.model';
 import { UserMiddleware } from 'src/common/middleware/user.middleware';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports:[
     SequelizeModule.forFeature([User])
   ],
-  controllers: [UsersController],
+  controllers: [UsersController, AuthController],
   providers: [UsersService],
 })
 export class UsersModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(UserMiddleware).forRoutes({
-        path: 'users/validate',      // o '/users'
-        method: RequestMethod.GET,
-      })
+      consumer.apply(UserMiddleware).forRoutes(UsersController)
   }
 }

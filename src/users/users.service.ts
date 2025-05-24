@@ -17,6 +17,11 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const validate = await this.validateEmail(createUserDto.email)
+    console.log('validate:', validate)
+    if(validate){
+      throw new HttpException({msg:'El correo ya se encuentra registrado'}, HttpStatus.FOUND)
+    }
     const saltOrRounds = 10;
     const password = 'random_password';
     const hash = await bcrypt.hash(createUserDto.password, saltOrRounds);
@@ -73,7 +78,11 @@ export class UsersService {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const user = await User.findByPk(id);
+    if (user) {
+      await user.destroy();
+      return {msg:'Usuario eliminado con exito!'}
+    }
   }
 }
