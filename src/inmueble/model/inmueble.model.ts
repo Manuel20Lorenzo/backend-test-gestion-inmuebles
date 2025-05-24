@@ -5,7 +5,8 @@ import { User } from '../../users/model/user.model'; // Asegúrate de que esta r
   tableName: 'houses',
   timestamps: true, // para createdAt y updatedAt
 })
-export class House {
+export class House extends Model<House>{
+  
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,

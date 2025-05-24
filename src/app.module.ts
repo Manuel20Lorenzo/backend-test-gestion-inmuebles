@@ -5,6 +5,8 @@ import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { JwtModule } from '@nestjs/jwt';
 import { InmuebleModule } from './inmueble/inmueble.module';
+import { User } from './users/model/user.model';
+import { House } from './inmueble/model/inmueble.model';
 
 @Module({
 
@@ -24,7 +26,7 @@ import { InmuebleModule } from './inmueble/inmueble.module';
       database: 'mydatabase',   // Tu base de datos
       autoLoadModels: true,     // Auto carga modelos importados
       synchronize: true,        // Sincroniza tablas (en dev)
-      models: [],               // Aquí puedes añadir tus modelos
+      models: [User, House],               // Aquí puedes añadir tus modelos
     }),
     InmuebleModule,
   ],
